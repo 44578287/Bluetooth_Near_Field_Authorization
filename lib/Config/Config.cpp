@@ -26,5 +26,6 @@ typedef struct
     int RSSI_Average;   // 平均信号强度
 } BLE_Client;           // 蓝牙客户端
 std::map<String, BLE_Client> BLE_ClientMap; // 蓝牙客户端列表<MAC地址,设备信息>
+std::vector<String> BLE_Client_BanList; // 蓝牙客户端黑名单<MAC地址>
 #define BLE_LOCK_VALUE -55 // 蓝牙锁定值
 #define BLE_LOCK_VALUE_AVERAGE -55 // 蓝牙锁定平均值

@@ -79,7 +79,20 @@ BLE_Client BLE_lock_trig()
             Serial.printf("设备地址: %s \n", pair.first.c_str());
             Serial.printf("设备信号强度: %d \n", pair.second.RSSI);
             Serial.printf("设备平均信号强度: %d \n", pair.second.RSSI_Average);*/
-            BLE_RSSI.push_back(pair.second);
+            
+            bool isBan = false;
+            for (auto element : BLE_Client_BanList) // 遍历黑名单
+            {
+                if (element == pair.second.MAC)
+                {
+                    isBan = true;
+                    break;
+                }
+            }
+            if (!isBan)//不在黑名单中才加入
+            {
+                BLE_RSSI.push_back(pair.second);
+            }
         }
     }
     BLE_Client minDevice = {"Null", "Null", -100, -100};
